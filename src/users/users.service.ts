@@ -38,7 +38,7 @@ export class UsersService {
     
     const hash = await this.hashPassword(userDto.password);
     const user = {...userDto, password: hash};
-  
+   
     return await this.model.findByIdAndUpdate(idUser, user, {new: true})
   }
 
