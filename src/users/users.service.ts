@@ -10,7 +10,8 @@ import { UserDto } from './dto/user.dto';
 @Injectable()
 export class UsersService {
     constructor(@InjectModel(USER.name) private readonly model: Model<IUser>){}
-  public async create(userDto:UserDto){
+  
+    public async create(userDto:UserDto){
        const hash = await this.hashPassword(userDto.password);
        const newUser = new this.model({...userDto, password:hash});
        return await newUser.save();
@@ -23,7 +24,7 @@ export class UsersService {
   public async findById(idUser:string): Promise<IUser>{
 
     if(!idUser){
-      throw new NotFoundException({msg:"You Must Insert User", status: HttpStatus.NOT_FOUND})
+      throw new NotFoundException({msg:"You Must Insert User", status: HttpStatus.CONFLICT})
     }
     
     return await this.model.findById(idUser)

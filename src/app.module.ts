@@ -4,6 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
+import { PassengerModule } from './passenger/passenger.module';
 
 @Module({
   imports: [ConfigModule.forRoot({
@@ -13,7 +14,7 @@ import { UsersModule } from './users/users.module';
     useNewUrlParser: true,
     useUnifiedTopology:true,
     retryWrites: true
-  }), UsersModule],
+  }), UsersModule, PassengerModule],
   controllers: [AppController],
   providers: [AppService],
 })
