@@ -11,7 +11,7 @@ export class UserDto{
   
     @IsNotEmpty()
     @IsEmail()
-    readonly emial:string;
+    readonly email:string;
   
     @IsNotEmpty()
     @IsString()

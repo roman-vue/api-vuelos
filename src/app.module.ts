@@ -10,8 +10,9 @@ import { UsersModule } from './users/users.module';
     envFilePath: ['.env'],
     isGlobal: true
   }), MongooseModule.forRoot(process.env.URI_MONGODB, {
-    useCreateIndex: true,
-    useFindAndModify: false
+    useNewUrlParser: true,
+    useUnifiedTopology:true,
+    retryWrites: true
   }), UsersModule],
   controllers: [AppController],
   providers: [AppService],
