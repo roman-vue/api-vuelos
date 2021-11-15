@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { PassengerDto } from './dto/passenger.dto';
 import { PassengerService } from './passenger.service';
 
@@ -24,6 +24,11 @@ export class PassengerController {
     @Delete(':idPassenger')
     deletePassenger(@Param('idPassenger') idPassenger: string){
         return this.passengerService.deletePassenger(idPassenger)
+    }
+
+    @Put(':idPassenger')
+    updatePassenger(@Param('idPassenger') idPassenger: string, @Body() passengerDto:PassengerDto){
+        return this.passengerService.updatePassenger(idPassenger,passengerDto)
     }
     
 }

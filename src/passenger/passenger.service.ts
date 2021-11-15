@@ -44,4 +44,17 @@ export class PassengerService {
           return {msg: "delete", status:HttpStatus.OK}
     }
 
+    public async updatePassenger(idPassenger:string , passengerDto:PassengerDto){
+      const validation = this.findByIdPassenger(idPassenger);
+
+      if(!validation){
+        throw new NotFoundException({msg:'there are no passengers', status: HttpStatus.NOT_FOUND});
+      }
+      
+      const updatePassenger = {...passengerDto}
+
+      return await this.model.findByIdAndUpdate(updatePassenger);
+
+    }
+
 }
