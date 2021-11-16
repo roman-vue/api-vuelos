@@ -34,4 +34,9 @@ export class FlightService {
         return findById
     }
 
+    public async deleteFligth(idFlight:string){
+        const deletes =  await this.model.findByIdAndDelete(idFlight);
+        return{msg: "delete", status: HttpStatus.OK}
+    }
+
 }
