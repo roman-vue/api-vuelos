@@ -13,12 +13,12 @@ export class PassengerService {
     public async createPassenger(passengerDto:PassengerDto):Promise<IPassenger>{
       const newPassenger = new this.model(passengerDto)
         const save = await newPassenger.save();  
-      return save
+       return save
     }
 
     public async findAllPassenger(): Promise<IPassenger[]>{
         const find = await this.model.find();
-        if(find.length < 0){
+        if(find.length <= 0){
             throw new NotFoundException({msg:'there are no passengers', status: HttpStatus.NOT_FOUND});
         }
         return find;
@@ -45,15 +45,13 @@ export class PassengerService {
     }
 
     public async updatePassenger(idPassenger:string , passengerDto:PassengerDto){
-      const validation = this.findByIdPassenger(idPassenger);
+      const validation = await this.findByIdPassenger(idPassenger);
 
       if(!validation){
         throw new NotFoundException({msg:'there are no passengers', status: HttpStatus.NOT_FOUND});
       }
-      
-      const updatePassenger = {...passengerDto}
 
-      return await this.model.findByIdAndUpdate(updatePassenger);
+      return await this.model.findByIdAndUpdate(idPassenger, passengerDto, {new: true});
 
     }
 

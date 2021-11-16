@@ -5,6 +5,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { PassengerModule } from './passenger/passenger.module';
+import { FlightModule } from './flight/flight.module';
 
 @Module({
   imports: [ConfigModule.forRoot({
@@ -14,7 +15,7 @@ import { PassengerModule } from './passenger/passenger.module';
     useNewUrlParser: true,
     useUnifiedTopology:true,
     retryWrites: true
-  }), UsersModule, PassengerModule],
+  }), UsersModule, PassengerModule, FlightModule],
   controllers: [AppController],
   providers: [AppService],
 })

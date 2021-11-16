@@ -14,7 +14,7 @@ export class PassengerController {
     @Get()
      findAllPassenger(){
          return this.passengerService.findAllPassenger();
-     }
+    }
 
     @Get(':idPassenger')
     finByIdPassenger(@Param('idPassenger') idPassenger: string){

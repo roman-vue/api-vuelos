@@ -18,7 +18,11 @@ export class UsersService {
   }
 
   public async findAll(): Promise<IUser[]>{
-    return this.model.find();
+   const find= await this.model.find();
+    if(find.length <= 0){
+      throw new NotFoundException({msg:'there are no passengers', status: HttpStatus.NOT_FOUND});
+    }
+    return find;
   }
 
   public async findById(idUser:string): Promise<IUser>{
