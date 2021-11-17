@@ -1,7 +1,8 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { PassengerDto } from './dto/passenger.dto';
 import { PassengerService } from './passenger.service';
-
+@ApiTags('Passenger')
 @Controller('api/v1/passenger')
 export class PassengerController {
     constructor(readonly passengerService:PassengerService){}
