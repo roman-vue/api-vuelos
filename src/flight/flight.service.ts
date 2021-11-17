@@ -16,7 +16,7 @@ export class FlightService {
     }
 
     public async getAllFlight():Promise<IFlight[]>{
-        const find = await this.model.find();
+        const find = await this.model.find().populate('passenger');
 
         if(find.length <= 0){
             throw new NotFoundException({msg:'there are no flight', status: HttpStatus.NOT_FOUND});
@@ -26,11 +26,7 @@ export class FlightService {
     }
 
     public async getFligthByID(idFlight:string):Promise<IFlight>{
-        const findById= await this.model.findById(idFlight);
-        if(!findById){
-            throw new NotFoundException({msg:'there are no flight', status: HttpStatus.NOT_FOUND});
-        }
-
+        const findById= await this.model.findById(idFlight).populate('passenger');
         return findById
     }
 
@@ -38,5 +34,16 @@ export class FlightService {
         const deletes =  await this.model.findByIdAndDelete(idFlight);
         return{msg: "delete", status: HttpStatus.OK}
     }
+
+    public async addPassenger(idFlight:string, idPassenger:string):Promise<IFlight>{
+      
+        return await this.model.findByIdAndUpdate(idFlight,
+            {
+                $addToSet:{passenger:idPassenger}
+            },{new:true}).populate('passenger')
+         
+    }
+
+    
 
 }

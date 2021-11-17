@@ -3,7 +3,6 @@ import { FlightService } from './flight.service';
 import { FlightController } from './flight.controller';
 import { MongooseModule } from '@nestjs/mongoose';
 import { FLIGHT } from 'src/common/interfaces/models/models';
-import { PassengerSchema } from 'src/passenger/schema/passenger.schema';
 import { FlightSchema } from './schema/flight.schema';
 import { PassengerModule } from 'src/passenger/passenger.module';
 
