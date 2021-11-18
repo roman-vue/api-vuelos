@@ -11,11 +11,22 @@ import { UserDto } from './dto/user.dto';
 export class UsersService {
     constructor(@InjectModel(USER.name) private readonly model: Model<IUser>){}
   
+    
+    public async finByUserName(username:string){
+      return await this.model.findOne({username:username})
+    }
+
+    public async checkPassword(password:string, passwordDb:string):Promise<boolean>{
+      return await bcrypt.compare(password, passwordDb);
+    }
+    
+    
+    
     public async create(userDto:UserDto){
        const hash = await this.hashPassword(userDto.password);
        const newUser = new this.model({...userDto, password:hash});
        return await newUser.save();
-  }
+    }
 
   public async findAll(): Promise<IUser[]>{
    const find= await this.model.find();
