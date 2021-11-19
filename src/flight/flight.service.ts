@@ -44,6 +44,7 @@ export class FlightService {
     }
     
     public async addPassenger(idFlight:string, idPassenger:string):Promise<IFlight>{
+   
         
         return await this.model.findByIdAndUpdate(idFlight,
             {
@@ -67,8 +68,7 @@ export class FlightService {
      const day = dateFormat.substring(8,10);
      const {data} = await axios.get(`
      https://www.metaweather.com/api/location/${woeid}/${year}/${mounth}/${day}`)
-     console.log(data);
-            
+
             return data
     }
      
