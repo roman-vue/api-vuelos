@@ -1,11 +1,14 @@
-import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Post } from '@nestjs/common';
-import { ApiProperty, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Body, Controller, Delete, Get, HttpException, HttpStatus, Param, Post, UseGuards } from '@nestjs/common';
+import { ApiBearerAuth, ApiProperty, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { type } from 'os';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { PassengerService } from 'src/passenger/passenger.service';
 import { FlightDto } from './dto/flight.dto';
 import { FlightService } from './flight.service';
 
 @ApiTags('Flight')
+@ApiBearerAuth()
+@UseGuards(JwtAuthGuard)
 @Controller('api/v1/flight')
 export class FlightController {
     constructor(private fligthService:FlightService, private passengerService: PassengerService){}

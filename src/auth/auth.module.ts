@@ -10,10 +10,10 @@ import { LocalStrategy } from './strategies/local.strategy';
 
 @Module({
   imports:[UsersModule, PassportModule, JwtModule.register({
-    secret:process.env.JWT_SECRET,
+    secret:'secret',
     signOptions:{
-      expiresIn: process.env.EXPIRES_IN,
-      audience:process.env.APP_URL,
+      expiresIn:"10h",
+      audience:"https://superflights.com",
     }
   })],
   controllers: [AuthController],

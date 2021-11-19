@@ -17,6 +17,7 @@ async function bootstrap() {
   const options= new DocumentBuilder()
   .setTitle('Api-Vuelos')
   .setDescription('calendarios de vuelos app')
+   .addBearerAuth()
   .setVersion('1.0.1')
   .build();
 
